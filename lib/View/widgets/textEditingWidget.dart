@@ -26,7 +26,8 @@ class TextEditingWigdet extends StatelessWidget {
             ),
             child: TextFormField(
               controller: textEditingController,
-              decoration: InputDecoration(hintText: hintText),
+              decoration:
+                  InputDecoration(hintText: hintText, border: InputBorder.none),
             ),
           ),
           InkWell(

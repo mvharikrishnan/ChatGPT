@@ -1,6 +1,9 @@
 import 'package:chat_gpt/Controller/messageNotifier.dart';
 import 'package:chat_gpt/Model/messageModel.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:top_snackbar_flutter/custom_snack_bar.dart';
+import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 class whiteMessage extends StatelessWidget {
   const whiteMessage({
@@ -30,10 +33,22 @@ class whiteMessage extends StatelessWidget {
             "Chat GPT",
             style: TextStyle(fontSize: 10),
           ),
-          Text(
-            message.message,
-            style: TextStyle(
-              fontWeight: FontWeight.w500,
+          GestureDetector(
+            onLongPress: () {
+              Clipboard.setData(ClipboardData(text: message.message));
+
+              showTopSnackBar(
+                Overlay.of(context)!,
+                CustomSnackBar.success(
+                  message: "Text copied to clipboard",
+                ),
+              );
+            },
+            child: Text(
+              message.message,
+              style: TextStyle(
+                fontWeight: FontWeight.w500,
+              ),
             ),
           ),
         ],
